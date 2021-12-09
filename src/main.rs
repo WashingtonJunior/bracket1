@@ -1,20 +1,24 @@
 use std::io;
 
+mod datastruct;
+
+pub use datastruct::Stack;
+
 fn main()
 {
     let fechados = ['}', ']', ')'];
     let abertos = ['{', '[', '('];
 
+    //Função anônima (closure) para busca
     let index_of = |busca, onde: [char; 3]| { let pos = onde.iter().position(|&x| x == busca); if pos==None { -1 as isize } else {pos.unwrap() as isize}};
 
+    println!("Digite a sequencia: ");
 
     let mut buffer = String::new();
     let stdin = io::stdin(); // Acesso ao console
-
-    print!("Digite a sequencia: ");
-
     let _qt = stdin.read_line(&mut buffer); //_ na frente da variável porque não será usada
-    let mut pilha = Vec::new();
+    //let mut pilha = Vec::new();
+    let mut pilha = Stack::new();
 
     let mut seqvalida = true;
 
@@ -28,7 +32,7 @@ fn main()
             '}' | ']' | ')' =>  {   //println!("Fechado: {}", c); 
                                     let aberto = abertos[index_of(c, fechados) as usize];
 
-                                    if let Some(x) = pilha.last() {
+                                    if let Some(x) = pilha.peek() {
                                         if *x==aberto
                                         {
                                             pilha.pop();
