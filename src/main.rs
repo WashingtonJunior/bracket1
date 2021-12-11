@@ -39,7 +39,6 @@ fn main()
                                         }
                                         else
                                         {
-                                            println!("Sequencia invalida!");
                                             seqvalida = false;
                                             break;
                                         }
@@ -52,9 +51,12 @@ fn main()
         }
     }
 
-    if seqvalida
+    if seqvalida & pilha.is_empty()
     {
         println!("A sequencia eh valida!");
     }
-
+    else
+    {
+        println!("Sequencia invalida!");
+    }
 }

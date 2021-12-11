@@ -24,4 +24,9 @@ impl<T> Stack<T>
     {
         self.stack.last()
     }
+
+    pub fn is_empty(&self) -> bool
+    {
+        self.stack.is_empty()
+    }
 }
